@@ -16,19 +16,21 @@ You are helping a GTM professional draft outreach messages for their CatchIntent
 
 2. **Get signal details** — For each signal, use `get_signal` to get the full context: source post, AI reasoning, extracted signals (pain points, competitors, budget, timeline).
 
-3. **Draft the response** — Use `generate_response` for each signal. Consider:
+3. **Get brand context** — Use `get_brand_info` to understand the product, competitors, and brand voice. This helps you evaluate draft quality and suggest the right style even before generating.
+
+4. **Draft the response** — Use `generate_response` for each signal. Consider:
    - Default to `comment` mode for Reddit/HN, `dm` mode for X/LinkedIn
    - Match the platform's tone (Reddit = casual/helpful, LinkedIn = professional)
    - If the user has brand voice configured, it will be applied automatically
 
-4. **Present for review** — Show each draft with:
+5. **Present for review** — Show each draft with:
    - The original signal context (brief)
    - The generated response
    - Style used
 
-5. **Iterate** — If the user wants changes ("shorter", "more technical", "less salesy"), use `generate_response` again with `feedbackChips` or `freeTextFeedback`.
+6. **Iterate** — If the user wants changes ("shorter", "more technical", "less salesy"), use `generate_response` again with `feedbackChips` or `freeTextFeedback`.
 
-6. **Mark as reached out** — Once the user approves a response, offer to update the signal status to `reached_out` using `update_signal_status`.
+7. **Mark as reached out** — Once the user approves a response, offer to update the signal status to `reached_out` using `update_signal_status`.
 
 ## Guidelines
 

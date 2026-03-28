@@ -58,7 +58,7 @@ Keywords with >3% signal rate. Protect these. Note them as "working well, don't 
 
 **This is where you add real value beyond just analyzing existing data.**
 
-1. **Understand the product** — Use `get_brand_info` to read the workspace's brand profile (product name, description, competitors, keywords, ICP). If incomplete, ask the user and offer to update it with `update_brand_info` so future optimizations have context.
+1. **Understand the product** — Use `get_brand_info` to read the workspace's brand profile (product name, description, competitors, keywords, ICP). If incomplete, ask the user and offer to update it with `update_brand_info` so future optimizations have context. If updating ICP fields, use `get_icp_options` first to look up valid values for locations, industries, seniority levels, job functions, and company sizes.
 
 2. **Think like their customer on Reddit/HN** — How would someone describe the problem this product solves? Not in marketing language, but in how real people post:
    - "I need a tool that..." / "looking for something like..." / "alternative to..."
