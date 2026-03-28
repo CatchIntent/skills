@@ -38,7 +38,9 @@ You are generating a weekly performance report for a GTM team using CatchIntent.
    - Which listeners produced the most signals
    - Any listeners with concerning health metrics
 
-6. **Usage** — Use `get_usage` to show plan consumption.
+6. **Content filters** — Use `get_platform_denylist` to note active filters (blocked subreddits/users). If none are set and listener health shows noise from specific sources, suggest adding filters.
+
+7. **Usage** — Use `get_usage` to show plan consumption.
 
 ## Output Format
 

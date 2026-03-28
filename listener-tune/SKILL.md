@@ -1,6 +1,6 @@
 ---
 name: listener-tune
-description: Analyze and optimize your listener setup. Reviews keyword performance, identifies token burners, suggests data-backed improvements, and builds a tiered listener strategy (Basic 3 / Pro 10). Use when asking "optimize my listeners", "tune my keywords", "am I wasting tokens", or "set up my listeners".
+description: Analyze and optimize your listener setup. Reviews keyword performance, identifies underperformers, suggests data-backed improvements, and builds a tiered listener strategy. Use when asking "optimize my listeners", "tune my keywords", "improve signal quality", or "set up my listeners".
 metadata:
   author: catchintent
   version: "1.0"
@@ -28,6 +28,8 @@ You are helping a GTM professional optimize their CatchIntent listeners for maxi
 
 5. **Sample recent signals** — Use `search_signals` (page size 20, sorted by `createdAt` DESC) to see what's actually coming through. Note which listeners and intents generate the most value.
 
+6. **Check content filters** — Use `get_platform_denylist` to see if any subreddits or users are already blocked. Note what's blocked so you don't re-suggest those sources.
+
 ## Phase 2: Diagnose Problems
 
 Build a keyword performance table from the `get_listener` data:
@@ -38,8 +40,8 @@ Build a keyword performance table from the `get_listener` data:
 
 **Flag these issues:**
 
-### Token Burners (CRITICAL)
-Keywords with >20 calls and 0 signals, or <1% signal rate. These waste AI budget on noise.
+### Underperforming Keywords (CRITICAL)
+Keywords with >20 matches and 0 signals, or <1% signal rate. These generate noise without value.
 - Show the exact numbers
 - Explain WHY they're noisy (too generic, wrong context, ambiguous meaning)
 - Suggest specific replacements — more specific multi-word phrases
@@ -50,6 +52,11 @@ Keywords with 0 calls over 7+ days. No volume means wasted slot.
 
 ### Overloaded Listeners
 If one listener generates 80%+ of all traffic but most gets rejected, its keywords are too broad.
+
+### Noisy Sources
+If dropped signals or low-quality signals consistently come from the same subreddit or user, suggest adding them to the platform denylist using `update_platform_denylist`. Blocked sources will never generate signals.
+- Check signal and dropped signal data for recurring subreddits that don't match the product's audience
+- Example: a men's fashion product getting signals from women's fashion subreddits
 
 ### Healthy Keywords
 Keywords with >3% signal rate. Protect these. Note them as "working well, don't touch."
@@ -74,7 +81,7 @@ Keywords with >3% signal rate. Protect these. Note them as "working well, don't 
    - **Feature-specific** (specific capabilities: "AI code review", "3D outfit builder")
    - **Use-case phrases** ("how to dress better", "automate my email outreach")
 
-4. **Cross-reference with existing data** — Check if any candidates overlap with current token burners or dead keywords. Don't re-recommend what's already failing.
+4. **Cross-reference with existing data** — Check if any candidates overlap with current underperformers or dead keywords. Don't re-recommend what's already failing.
 
 ## Phase 4: Build Tiered Strategy
 
