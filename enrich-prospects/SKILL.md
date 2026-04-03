@@ -1,6 +1,7 @@
 ---
 name: enrich-prospects
 description: Find and enrich your best prospects. Identifies unenriched people with strong ICP match, triggers enrichment for verified emails, and exports ready-to-use prospect lists. Use when you need emails, want to "enrich people", or prepare an outreach batch.
+compatibility: Requires CatchIntent MCP server connected via claude mcp add
 metadata:
   author: catchintent
   version: "1.0"

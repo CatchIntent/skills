@@ -1,6 +1,7 @@
 ---
 name: listener-tune
 description: Analyze and optimize your listener setup. Reviews keyword performance, identifies underperformers, suggests data-backed improvements, and builds a tiered listener strategy. Use when asking "optimize my listeners", "tune my keywords", "improve signal quality", or "set up my listeners".
+compatibility: Requires CatchIntent MCP server connected via claude mcp add
 metadata:
   author: catchintent
   version: "1.0"

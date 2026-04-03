@@ -1,6 +1,7 @@
 ---
 name: weekly-report
 description: Generate a weekly performance report for your team. Summarizes signals, wins, pipeline health, and listener performance. Use when asking for a "weekly report", "weekly summary", or "how did we do this week".
+compatibility: Requires CatchIntent MCP server connected via claude mcp add
 metadata:
   author: catchintent
   version: "1.0"
@@ -16,6 +17,7 @@ You are generating a weekly performance report for a GTM team using CatchIntent.
    - Signals to review, high intent count
    - Posts analyzed, noise filtered, hours saved
    - Won deals and deal values
+   - **Funnel conversion rates** — `funnel.actionRate` (signals acted on), `funnel.replyRate` (outreach → replies), `funnel.winRate` (replies → wins). Show these prominently — they tell the story of the week.
 
 2. **Signal breakdown** — Use `search_signals` for this week's signals to analyze:
    - Total new signals this week
@@ -55,8 +57,10 @@ Structure the report as:
 ### Signals
 - [Table: platform, count, top intent]
 
-### Pipeline
-- [Funnel: new → reached_out → replied → won]
+### Pipeline & Conversion
+- [Funnel: new → reached_out → replied → won with counts]
+- [Action Rate: X% | Reply Rate: X% | Win Rate: X%]
+- [Compare to previous week if available — improving or declining?]
 
 ### People
 - [New prospects, enriched, ICP breakdown]
@@ -69,3 +73,5 @@ Structure the report as:
 ```
 
 Keep it to one screen. Executives should be able to read this in 30 seconds.
+
+If funnel rates show a clear bottleneck (e.g., action rate < 30%, reply rate < 10%, win rate < 20%), flag it and suggest `/campaign-retro` for a deeper diagnosis.

@@ -1,6 +1,7 @@
 ---
 name: pipeline-review
 description: Review your signal and prospect pipeline. Checks signals stuck without responses, identifies stale outreach, and finds deals to close. Use when asking "how's my pipeline", "what needs follow-up", or "pipeline review".
+compatibility: Requires CatchIntent MCP server connected via claude mcp add
 metadata:
   author: catchintent
   version: "1.0"

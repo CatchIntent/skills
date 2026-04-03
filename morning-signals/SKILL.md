@@ -1,6 +1,7 @@
 ---
 name: morning-signals
 description: Daily signal review for GTM teams. Pulls today's hottest signals, summarizes them, and helps you prioritize who to reach out to first. Use when starting your day, checking new leads, or asking "what's new today".
+compatibility: Requires CatchIntent MCP server connected via claude mcp add
 metadata:
   author: catchintent
   version: "1.0"

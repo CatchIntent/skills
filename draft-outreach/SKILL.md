@@ -1,6 +1,7 @@
 ---
 name: draft-outreach
 description: Draft personalized outreach for your best signals. Generates AI responses in your brand voice, lets you iterate with feedback, and marks signals as reached out. Use when you want to "write replies", "draft DMs", or "respond to signals".
+compatibility: Requires CatchIntent MCP server connected via claude mcp add
 metadata:
   author: catchintent
   version: "1.0"
@@ -18,8 +19,9 @@ You are helping a GTM professional draft outreach messages for their CatchIntent
 
 3. **Get brand context** — Use `get_brand_info` to understand the product, competitors, and brand voice. This helps you evaluate draft quality and suggest the right style even before generating.
 
-4. **Draft the response** — Use `generate_response` for each signal. Consider:
+4. **Draft the response** — Use `generate_response` for each signal:
    - Default to `comment` mode for Reddit/HN, `dm` mode for X/LinkedIn
+   - For DMs, pass `firstTouch: true` (the default). This enforces no-pitch, signal-first rules. Only use `firstTouch: false` if the user is following up on an existing conversation.
    - Match the platform's tone (Reddit = casual/helpful, LinkedIn = professional)
    - If the user has brand voice configured, it will be applied automatically
 
@@ -37,4 +39,7 @@ You are helping a GTM professional draft outreach messages for their CatchIntent
 - Never draft more than 5 responses at once — quality over quantity
 - Always show the response before marking status — let the user approve
 - If a signal has no clear outreach angle, say so and skip it
-- Keep responses authentic — no generic "I noticed your post" openings
+- **Signal is the hook.** The source post/comment that generated the signal is your #1 personalization asset. Every message should reference it specifically — what they said, what problem they described, what question they asked. "Saw your post about struggling with SDR outreach at scale" beats "I noticed you're interested in sales automation."
+- No generic openings. If the message could apply to anyone, it's not personalized enough.
+- When presenting drafts, show the signal source alongside the message so the user can see the connection
+- If brand voice isn't configured, mention that `/calibrate-voice` can improve response quality
