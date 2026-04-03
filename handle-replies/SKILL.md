@@ -50,7 +50,7 @@ Based on the reply category, draft an appropriate follow-up:
 ### Interested
 - **Goal:** Convert to meeting/demo
 - **Approach:** Suggest a specific next step (calendar link, demo, quick call)
-- Use `generate_response` in `dm` mode with the signal context
+- Use `generate_response` in `dm` mode with `firstTouch: false` (this is a follow-up, product mention is OK)
 - Keep it short — they're already interested, don't over-sell
 
 ### Question
@@ -62,7 +62,7 @@ Based on the reply category, draft an appropriate follow-up:
 - **Goal:** Keep the door open without pressure
 - **Approach:** Acknowledge their timing, offer something low-commitment (resource, case study link, "happy to reconnect in Q2")
 - No follow-up sequence — one message and wait
-- Use `generate_response` with `softer-tone` feedback chip
+- Use `generate_response` with `firstTouch: false` and `softer-tone` feedback chip
 
 ### Competitor Mention
 - **Goal:** Differentiate without bashing
@@ -95,7 +95,7 @@ Show the draft with:
 
 Ask: "Want to send this as-is, adjust it, or skip?"
 
-If they want changes, use `generate_response` with `freeTextFeedback` incorporating their notes.
+If they want changes, use `generate_response` with `firstTouch: false` and `freeTextFeedback` incorporating their notes.
 
 ## Step 6: Update Status
 
