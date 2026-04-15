@@ -48,11 +48,12 @@ npx skills add catchintent/skills
 | **campaign-retro** | Diagnoses what's broken — targeting, voice, or reply handling — with data | "Why aren't my signals converting", "What's not working" |
 | **weekly-report** | Generates a team-ready weekly performance summary | "Weekly report", "How did we do this week" |
 
-### Setup
+### Setup & Positioning
 
 | Skill | What it does | Trigger |
 |-------|-------------|---------|
 | **calibrate-voice** | Calibrates brand voice from your real messages or a preset archetype | "Set up my voice", "My responses don't sound like me" |
+| **craft-offer** | Builds your product offer — value prop, pain point, unique mechanism, proof points — that powers all AI outreach | "Set up my offer", "My outreach messages feel generic" |
 
 ## Suggested Workflows
 
@@ -69,6 +70,11 @@ npx skills add catchintent/skills
 **Competitive intelligence:**
 ```
 /research-competitor → /analyze-post (their viral posts) → /find-prospects (target their audience)
+```
+
+**First-time setup:**
+```
+/calibrate-voice → /craft-offer → /listener-tune
 ```
 
 **Weekly optimization:**

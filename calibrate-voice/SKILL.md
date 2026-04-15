@@ -110,3 +110,4 @@ Map the extracted patterns to CatchIntent's brand voice fields:
 - **Test before finishing.** Always generate a test response so they can see the voice in action. If it doesn't land, iterate.
 - **Respect their style.** If they're naturally salesy or direct, don't force "no pitch" rules. Extract what they actually do, not what best practices say they should do.
 - **Mention /draft-outreach.** After calibration, suggest they use `/draft-outreach` to generate responses with their new voice.
+- **Mention /craft-offer.** If the product offer isn't configured, suggest `/craft-offer` next — voice + offer together make outreach significantly better.
