@@ -31,18 +31,13 @@ You are generating a weekly performance report for a GTM team using CatchIntent.
    - Won and lost this week
    - Total pipeline value
 
-4. **People activity** — Use `search_people` to summarize:
-   - New prospects discovered this week
-   - People enriched
-   - ICP match distribution (strong/moderate/weak)
-
-5. **Listener health** — Use `list_listeners` to briefly note:
+4. **Listener health** — Use `list_listeners` to briefly note:
    - Which listeners produced the most signals
    - Any listeners with concerning health metrics
 
-6. **Content filters** — Use `get_platform_denylist` to note active filters (blocked subreddits/users). If none are set and listener health shows noise from specific sources, suggest adding filters.
+5. **Content filters** — Use `get_platform_denylist` to note active filters (blocked subreddits/users). If none are set and listener health shows noise from specific sources, suggest adding filters.
 
-7. **Usage** — Use `get_usage` to show plan consumption.
+6. **Usage** — Use `get_usage` to show plan consumption.
 
 ## Output Format
 

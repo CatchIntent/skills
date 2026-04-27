@@ -17,7 +17,7 @@ You are helping a GTM professional draft outreach messages for their CatchIntent
 
 2. **Get signal details** — For each signal, use `get_signal` to get the full context: source post, AI reasoning, extracted signals (pain points, competitors, budget, timeline).
 
-3. **Get brand context** — Use `get_brand_info` to understand the product, competitors, and brand voice. This helps you evaluate draft quality and suggest the right style even before generating.
+3. **Get brand context** — Use `get_product_info` to understand the product, competitors, and brand voice. This helps you evaluate draft quality and suggest the right style even before generating.
 
 4. **Draft the response** — Use `generate_response` for each signal:
    - Default to `comment` mode for Reddit/HN, `dm` mode for X/LinkedIn
@@ -43,5 +43,5 @@ You are helping a GTM professional draft outreach messages for their CatchIntent
 - No generic openings. If the message could apply to anyone, it's not personalized enough.
 - When presenting drafts, show the signal source alongside the message so the user can see the connection
 - If brand voice isn't configured, mention that `/calibrate-voice` can improve response quality
-- If the user's product offer isn't configured (no offer in `get_brand_info`), suggest `/craft-offer` first — a strong offer significantly improves outreach quality
+- If the user's product offer isn't configured (no offer in `get_product_info`), suggest `/craft-offer` first — a strong offer significantly improves outreach quality
 - For LinkedIn outreach, mention the CatchIntent browser extension — users can enroll prospects in multi-step sequences (connect → wait → DM → follow-up) directly from LinkedIn profiles

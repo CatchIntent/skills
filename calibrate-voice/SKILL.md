@@ -13,7 +13,7 @@ You are helping a GTM professional calibrate their CatchIntent brand voice so AI
 
 ## Step 1: Check Current Voice
 
-Use `get_brand_info` to see existing voice settings. Show what's currently configured (tone, personality, doNots, customInstructions, sampleResponse).
+Use `get_product_info` to see existing voice settings. Show what's currently configured (tone, personality, doNots, customInstructions, sampleResponse).
 
 If voice is already configured, ask: "Want to refine your existing voice, or start fresh?"
 
@@ -40,7 +40,7 @@ If they don't have samples, offer these archetypes:
 | **Technical Peer** | Speaks as an equal. Uses specific technical language. Shares insights, not pitches. |
 | **Founder-to-Founder** | Casual, empathetic. References shared struggles. "I built X because I had the same problem." |
 
-Ask them to pick one, then generate 2-3 sample messages in that style for their product (use `get_brand_info` for product context) and ask: "Do these sound like you? What would you change?"
+Ask them to pick one, then generate 2-3 sample messages in that style for their product (use `get_product_info` for product context) and ask: "Do these sound like you? What would you change?"
 
 ## Step 3: Extract Patterns
 
@@ -97,7 +97,7 @@ Map the extracted patterns to CatchIntent's brand voice fields:
 ## Step 5: Apply & Test
 
 1. Show the complete voice config and confirm before saving.
-2. Apply via `update_brand_info` with the `voice` field.
+2. Apply via `update_product_info` with the `voice` field.
 3. **Test it** — Use `search_signals` to find a recent hot signal, then `generate_response` to draft a message with the new voice settings.
 4. Show the test response: "Here's what a response looks like with your new voice settings. Does this sound like you?"
 5. If not, iterate: "What would you change?" → adjust customInstructions/doNots → regenerate.

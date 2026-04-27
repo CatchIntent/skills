@@ -33,11 +33,7 @@ You are helping a GTM professional review and clean up their CatchIntent pipelin
    **New signals piling up:**
    - Count of `new` signals — if > 20, flag that the inbox needs attention
 
-3. **People pipeline** — Use `search_people` to check:
-   - People in `contacted` status — any replies?
-   - People in `approved` but not yet contacted — ready for outreach?
-
-4. **Summarize** — End with a brief:
+3. **Summarize** — End with a brief:
    - Total signals by status
    - Signals needing immediate action
    - Win/loss count this period (from `get_workspace_stats`)

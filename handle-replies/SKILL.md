@@ -55,7 +55,7 @@ Based on the reply category, draft an appropriate follow-up:
 
 ### Question
 - **Goal:** Answer thoroughly, then redirect to next step
-- **Approach:** Answer their specific question with real information from `get_brand_info`. End with a soft CTA.
+- **Approach:** Answer their specific question with real information from `get_product_info`. End with a soft CTA.
 - If you don't know the answer (pricing, specific features), tell the user: "You'll need to answer this one directly — here's a template with a placeholder for [pricing/feature details]."
 
 ### Hesitant
@@ -67,7 +67,7 @@ Based on the reply category, draft an appropriate follow-up:
 ### Competitor Mention
 - **Goal:** Differentiate without bashing
 - **Approach:** Acknowledge their current tool, highlight 1-2 specific differentiators relevant to their original pain point
-- Use `get_brand_info` for competitor context
+- Use `get_product_info` for competitor context
 - Never trash the competitor — "X is solid for Y, we focused specifically on Z"
 
 ### Positive but Vague

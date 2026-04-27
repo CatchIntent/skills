@@ -13,7 +13,7 @@ You are helping a GTM professional build a compelling product offer framework th
 
 ## What To Do
 
-1. **Get current state** — Use `get_brand_info` to check:
+1. **Get current state** — Use `get_product_info` to check:
    - Does the workspace already have an offer configured? (check `offer` field)
    - What's the product name and description?
    - Who are the competitors?
@@ -46,7 +46,7 @@ You are helping a GTM professional build a compelling product offer framework th
    - "Doesn't sound like us" → check `/calibrate-voice` for tone alignment
    - "Missing our key differentiator" → refine the unique mechanism
 
-7. **Save** — Once approved, use `update_brand_info` to save the offer. Show what was saved.
+7. **Save** — Once approved, use `update_product_info` to save the offer. Show what was saved.
 
 8. **Test it** — Find a recent hot signal with `search_signals`, then use `generate_response` to draft a message. Show how the offer context improves the outreach: "Here's what a response looks like WITH your offer vs a generic one."
 

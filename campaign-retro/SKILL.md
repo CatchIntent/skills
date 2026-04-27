@@ -25,7 +25,7 @@ Pull all the data you need upfront:
 
 5. **Listener health** — Use `list_listeners` then `get_listener` for each to see keyword performance, rejection rates, signal rates.
 
-6. **Brand context** — Use `get_brand_info` to understand the product, ICP, and brand voice settings.
+6. **Brand context** — Use `get_product_info` to understand the product, ICP, and brand voice settings.
 
 7. **Usage** — Use `get_usage` to check plan limits and consumption.
 
@@ -81,7 +81,7 @@ There are three levers. Diagnose which one (or more) is the problem:
 - No_response rate > 70% of reached_out signals
 
 **Root causes to investigate:**
-- Brand voice not configured (check `get_brand_info` voice settings)
+- Brand voice not configured (check `get_product_info` voice settings)
 - Messages too generic (not referencing the specific post/problem)
 - Too salesy on first touch (pitching before building rapport)
 - Wrong tone for platform (LinkedIn formality on Reddit, or vice versa)
