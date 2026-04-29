@@ -23,7 +23,7 @@ metadata:
 Always fetch and show real data before making recommendations. Never suggest changes based on assumptions — cite specific numbers from tool results.
 
 ### Confirm Before Writing
-Before calling any tool that modifies state (`update_product_info`, `update_listener`, `create_listener`, `toggle_listener`, `update_signal_status`, `update_platform_denylist`, `create_linkedin_agent`, `update_linkedin_agent`, `set_linkedin_agent_status`, `update_linkedin_lead_status`, `enrich_linkedin_lead`, `push_to_crm`), show what you're about to change and wait for explicit user approval.
+Before calling any tool that modifies state (`workspace_product_update`, `sl_listener_update`, `sl_listener_create`, `sl_listener_toggle`, `sl_signal_update_status`, `sl_denylist_update`, `li_agent_create`, `li_agent_update`, `li_agent_set_status`, `li_lead_update_status`, `li_lead_enrich`, `sl_signal_push_to_crm`), show what you're about to change and wait for explicit user approval.
 
 Read-only tools (`get_*`, `search_*`, `list_*`) can be called without confirmation.
 
@@ -36,13 +36,13 @@ When classifying, scoring, or recommending, explain why. Quote specific data: "K
 ## Tool Usage Patterns
 
 ### Always Start With Context
-Most skills should begin with `get_product_info` to understand the product, competitors, ICP, and brand voice. If the workspace has multiple products, call `list_products` first and ask which one — never silently pick. This context shapes everything: prioritization, language, recommendations.
+Most skills should begin with `workspace_product_get` to understand the product, competitors, ICP, and brand voice. If the workspace has multiple products, call `workspace_product_list` first and ask which one — never silently pick. This context shapes everything: prioritization, language, recommendations.
 
 ### Check Plan Limits
-Before suggesting features or actions, use `get_usage` to check what the user's plan supports. Never recommend features they can't access. Never hardcode plan limits — always read them from the tool response.
+Before suggesting features or actions, use `workspace_usage` to check what the user's plan supports. Never recommend features they can't access. Never hardcode plan limits — always read them from the tool response.
 
 ### Funnel Awareness
-When analyzing performance, use `get_workspace_stats` which returns a `funnel` object with conversion rates:
+When analyzing performance, use `sl_stats` which returns a `funnel` object with conversion rates:
 - `actionRate` — % of signals acted on (reached_out / total)
 - `replyRate` — % of outreach that got replies (replied / reached_out)
 - `winRate` — % of replies that converted (won / replied)
@@ -50,10 +50,10 @@ When analyzing performance, use `get_workspace_stats` which returns a `funnel` o
 Use these rates to diagnose bottlenecks rather than raw counts alone.
 
 ### First-Touch Outreach
-When generating DMs via `generate_response`, pass `firstTouch: true` (the default) for initial outreach. This enforces: no product pitch, lead with the signal, value-first. Only set `firstTouch: false` for follow-up messages where product mention is appropriate.
+When generating DMs via `sl_signal_generate_response`, pass `firstTouch: true` (the default) for initial outreach. This enforces: no product pitch, lead with the signal, value-first. Only set `firstTouch: false` for follow-up messages where product mention is appropriate.
 
 ### Platform Denylist
-If you notice recurring low-quality sources (subreddits, users), proactively suggest blocking them via `update_platform_denylist`. Mention this is free and immediate.
+If you notice recurring low-quality sources (subreddits, users), proactively suggest blocking them via `sl_denylist_update`. Mention this is free and immediate.
 
 ## Output Style
 
@@ -64,22 +64,22 @@ If you notice recurring low-quality sources (subreddits, users), proactively sug
 
 ## LinkedIn Intelligence Patterns
 
-Skills that touch LinkedIn agents or leads (`list_linkedin_agents`, `get_linkedin_agent`, `create_linkedin_agent`, `update_linkedin_agent`, `set_linkedin_agent_status`, `get_linkedin_agent_runs`, `list_linkedin_leads`, `get_linkedin_lead`, `update_linkedin_lead_status`, `enrich_linkedin_lead`, `draft_linkedin_outreach`) must follow these patterns:
+Skills that touch LinkedIn agents or leads (`li_agent_list`, `li_agent_get`, `li_agent_create`, `li_agent_update`, `li_agent_set_status`, `li_agent_runs`, `li_lead_list`, `li_lead_get`, `li_lead_update_status`, `li_lead_enrich`, `li_lead_draft_outreach`) must follow these patterns:
 
 ### Surface Warmth Tiers, Not Scores
 Lead `warmthScore` is a 0–100 integer internally. Skills must surface the tier (`hot` ≥ 70, `warm` 40–69, `cool` < 40 / null) — never the raw number. Filtering accepts tier names; display uses tier names.
 
 ### Strict ICP Labels
-ICP fields (`locations`, `industries`, `seniorityLevels`, `jobFunctions`, `companySizes`) on agents and products accept **only labels listed in `get_icp_options`**. Always call `get_icp_options` before suggesting a label that wasn't already on file. Unknown labels are rejected — there are no silent drops.
+ICP fields (`locations`, `industries`, `seniorityLevels`, `jobFunctions`, `companySizes`) on agents and products accept **only labels listed in `workspace_icp_options`**. Always call `workspace_icp_options` before suggesting a label that wasn't already on file. Unknown labels are rejected — there are no silent drops.
 
 ### Prefer Free Enrichment Before Paid
-`enrich_linkedin_lead` calls Apify (≈ $0.002, one-shot, charged whether or not data is found). Before invoking it, try free public web sources (LinkedIn URL, company about page, X, GitHub, podcast/blog mentions) via `WebFetch` / `WebSearch`. Only escalate to paid when the user approves and free sources didn't yield enough to write outreach.
+`li_lead_enrich` calls Apify (≈ $0.002, one-shot, charged whether or not data is found). Before invoking it, try free public web sources (LinkedIn URL, company about page, X, GitHub, podcast/blog mentions) via `WebFetch` / `WebSearch`. Only escalate to paid when the user approves and free sources didn't yield enough to write outreach.
 
 ### Idempotent Enrichment
-`enrich_linkedin_lead` is one-shot — `fullEnrichmentAt` marks "we already tried", not "we succeeded". Don't propose retrying a lead that has the timestamp set.
+`li_lead_enrich` is one-shot — `fullEnrichmentAt` marks "we already tried", not "we succeeded". Don't propose retrying a lead that has the timestamp set.
 
 ### Drafting Is Read-Only
-`draft_linkedin_outreach` does not write or send. It returns body + rationale + variants. Sending happens externally (extension, Lemlist, manual DM). Never set a lead's status to `pushed` from a draft skill — that status is reserved for actual outreach-tool handoff.
+`li_lead_draft_outreach` does not write or send. It returns body + rationale + variants. Sending happens externally (extension, Lemlist, manual DM). Never set a lead's status to `pushed` from a draft skill — that status is reserved for actual outreach-tool handoff.
 
 ### Stay Inside LinkedIn Intel
 LinkedIn skills should not pull or cross-reference social-listening signals. Keep the surfaces separate — the user shifts contexts deliberately.
@@ -87,13 +87,13 @@ LinkedIn skills should not pull or cross-reference social-listening signals. Kee
 ## Social Listening Patterns
 
 ### Signal-First Personalization
-When drafting outreach via `generate_response`, always lead with the signal — the specific post or comment that surfaced this person. The signal IS the personalization hook.
+When drafting outreach via `sl_signal_generate_response`, always lead with the signal — the specific post or comment that surfaced this person. The signal IS the personalization hook.
 
 ### First-Touch Outreach
 Pass `firstTouch: true` (the default) for initial outreach. This enforces no product pitch, lead with the signal, value-first. Only set `firstTouch: false` for follow-up messages where product mention is appropriate.
 
 ### Platform Denylist
-If you notice recurring low-quality sources (subreddits, users), proactively suggest blocking them via `update_platform_denylist`. It is free, immediate, and applies to all listeners.
+If you notice recurring low-quality sources (subreddits, users), proactively suggest blocking them via `sl_denylist_update`. It is free, immediate, and applies to all listeners.
 
 ## Cross-Skill References
 
